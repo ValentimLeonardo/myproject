@@ -1,119 +1,37 @@
 import React from "react";
-import { Avatar } from 'react-native-elements';
-import { View, Text } from 'react-native';
-import { Input} from '@rneui/themed';
-import { Button } from '@rneui/themed';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Button } from "react-native-elements";
+import LoginScreen from "./Pages/LoginScreen.js";
+import CadastroUsuario from "./Pages/CadastroUsuario.js";
+import ListaContatos from "./Pages/ListaContato.js";
+import Contato from "./Pages/Contato.js";
+import ModificarContato from "./Pages/ModificarContato.js";
 
-const Login = () => {
 
-  return (
-    <View style={{
-      justifyContent: 'center',
-      alignItems: 'center',
-      paddingVertical: 1,
-      flexGrow: 1,
-    }}
->
-      <Avatar
-        size="large"
-        rounded
-        source={{ uri: 'C:\Users\Aluno\Desktop\Nova pasta\myproject\imagem\download.jfif' }}
-      />
-      <Text>Email</Text>
-      <Input containerStyle={{
-                width: 300,
-                marginHorizontal: 50,
-                marginVertical: 10,}}
-        placeholder='BASIC INPUT'
-      />
-      <Text>Senha</Text>
-      <Input containerStyle={{
-                width: 300,
-                marginHorizontal: 50,
-                marginVertical: 10,}}
-        placeholder='BASIC INPUT'
-      />
-    
-     <Button containerStyle={{
-                width: 200,
-                marginHorizontal: 50,
-                marginVertical: 10,}} >Logar</Button>
-     <Button containerStyle={{
-                width: 200,
-                marginHorizontal: 50,
-                marginVertical: 10,}}>Esqueci cadastro</Button>
-    </View>
+const Stack = createNativeStackNavigator();
+
+function App({navigation}) {
+return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Login" component={LoginScreen}/>
+        <Stack.Screen name="Usuario" component={CadastroUsuario}/> 
+        <Stack.Screen name="Contato" component={Contato}/>
+        <Stack.Screen name="Contatos" component={ListaContatos} options={{
+            headerRight: () => (
+              <Button
+                icon={{ name: 'add', type: 'material' }}
+                type="clear"
+                onPress={() => navigation.navigate('Contato')}
+              />
+            ),
+          }}/> 
+        <Stack.Screen name="Modificar" component={ModificarContato}/>  
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-};
-const Cadastro= () => {
+}
 
-  return (
-    <View style={{
-      justifyContent: 'center',
-      alignItems: 'center',
-      paddingVertical: 1,
-      flexGrow: 1,
-    }}
->
-      <Text containerStyle={{
-          fontSize: 32, 
-      }}>CADASTRO</Text>
-      <Text>Nome</Text>
-      <Input containerStyle={{
-                width: 300,
-                marginHorizontal: 50,
-                marginVertical: 10,}}
-        placeholder='BASIC INPUT'
-      />
-      <Text>Email</Text>
-      <Input containerStyle={{
-                width: 300,
-                marginHorizontal: 50,
-                marginVertical: 10,}}
-        placeholder='BASIC INPUT'
-      />
-      <Text>Senha</Text>
-      <Input containerStyle={{
-                width: 300,
-                marginHorizontal: 50,
-                marginVertical: 10,}}
-        placeholder='BASIC INPUT'
-      />
-     <Button containerStyle={{
-                width: 200,
-                marginHorizontal: 50,
-                marginVertical: 10,}}>Cadastro</Button>
-    </View>
-  );
-};
-const Recuperar= () => {
+export default App;
 
-  return (
-    <View style={{
-      justifyContent: 'center',
-      alignItems: 'center',
-      paddingVertical: 1,
-      flexGrow: 1,
-    }}
->
-      <Text containerStyle={{
-          fontSize: 32, 
-      }}>ESQUECI A SENHA</Text>
-      <Text>Email</Text>
-      <Input containerStyle={{
-                width: 300,
-                marginHorizontal: 50,
-                marginVertical: 10,}}
-        placeholder='BASIC INPUT'
-      />
-     <Button containerStyle={{
-                width: 200,
-                marginHorizontal: 50,
-                marginVertical: 10,}}>Enviar</Button>
-    </View>
-  );
-};
-
-export default Recuperar;
-//export default login;
-//export default Cadastro;
