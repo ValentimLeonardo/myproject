@@ -11,22 +11,25 @@ import ModificarContato from "./Pages/ModificarContato.js";
 
 const Stack = createNativeStackNavigator();
 
-function App({navigation}) {
+function App() {
 return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Login" component={LoginScreen}/>
         <Stack.Screen name="Usuario" component={CadastroUsuario}/> 
         <Stack.Screen name="Contato" component={Contato}/>
-        <Stack.Screen name="Contatos" component={ListaContatos} options={{
+        <Stack.Screen 
+          name="Contatos" 
+          component={ListaContatos} 
+          options={({ navigation }) => ({
             headerRight: () => (
               <Button
-                icon={{ name: 'add', type: 'material' }}
-                type="clear"
-                onPress={() => navigation.navigate('Contato')}
+                title="Adicionar"
+                onPress={() => navigation.navigate('Contato')} // Navega para a tela de Contato
               />
             ),
-          }}/> 
+          })}
+        />
         <Stack.Screen name="Modificar" component={ModificarContato}/>  
       </Stack.Navigator>
     </NavigationContainer>
